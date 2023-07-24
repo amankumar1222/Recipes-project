@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Recipes{% endblock title %}
+
+{% block css %}
+
+<style>
+
+</style>
+
+
+{% endblock css %}
+
+{% block body %}
+<div class="container-fluid">
+
+  <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+
+    <div class="container-fluid py-5">
+
+      <h1 class="display-5 fw-bold">Search Recipes</h1>
+      <p class="col-md-8 fs-4">Using a series of utilities.</p>
+
+      <div class="mb-3 ">
+
+        <form class="d-flex" method="get" action="/search/">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search"
+            id="search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="container">
+  <div class="row">
+    {% for recipe in Recipes %}
+
+    <div class="col main-hard">
+      <div class="card m-2" style="width: 90%; height:50%">
+        <img src="https://source.unsplash.com/1200x900/?recipe,{{recipe.title|slice:" :7"}}" class="d-block w-100"
+          alt="...">
+        <div class="card-body">
+          {% comment %} <h5 class="card-title">{{recipe.title|slice:":12"}}..</h5> {% endcomment %}
+          <h5 class="card-title">{{recipe.title}}..</h5>
+          <p class="card-text">
+            {{recipe.desc}}...
+            .</p>
+          <a href="{{recipe.url}}" target="_blank" class="btn btn-primary btn-sm">Go</a>
+          <a href="{{recipe.url}}" target="_blank" class="btn btn-primary btn-sm">update</a>
+          <a href="{{recipe.url}}" target="_blank" class="btn btn-primary btn-sm">delete</a>
+        </div>
+      </div>
+    </div>
+
+
+    {% if forloop.counter|divisibleby:3 and forloop.counter > 0 and not forloop.last %}
+  </div>
+  <div class="row">
+
+    {% endif %}
+
+
+    {% endfor %}
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+{% endblock body %}
